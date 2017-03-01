@@ -1,0 +1,13 @@
+#!/bin/sh /etc/rc.common
+# /init.d/mtkwifi
+
+START=90
+
+start() 
+{
+        VER=$(uname -r | awk -F "." '{print $1}')
+        [ $VER == 4 ] && [ ! -f /etc/config/wireless ] && {
+        wifi config > /etc/config/wireless
+        wifi
+        }
+}
